@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 const CardCharacter = ({ character }) => {
 	return <div className="p-2 col-12 col-sm-6 col-md-4 col-lg-3">
@@ -11,7 +11,7 @@ const CardCharacter = ({ character }) => {
 	<div className="card-body">
 	  <h5 className="card-title">{character.name}</h5>
 	  <p className="card-text text-truncate">{character.description}.</p>
-	  <a href="#" className="btn btn-primary">Go somewhere</a>
+	  <Link to={"/character/"+character.id} className="btn btn-primary">Transformations</Link>
 	</div>
   </div>
   </div>

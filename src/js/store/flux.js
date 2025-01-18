@@ -15,7 +15,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			theme: 'dark',
 			products: [], // <--- cambia a la categoria
-			categorias: ['Ropa', 'Videojuegos']
+			categorias: ['Ropa', 'Videojuegos'],
+
+			characters: [] // <-- useState global
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -40,6 +42,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			loadCharacters: async () => {
+				const resp = await fetch("https://dragonball-api.com/api/characters")
+				const data = await resp.json()
+				setStore({ characters: data.items });
 			}
 		}
 	};

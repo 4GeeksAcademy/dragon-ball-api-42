@@ -1,20 +1,12 @@
 
-import React, { useState, useEffect} from "react";
+import React, { useContext } from "react";
 import CardCharacter from "../component/cardCharacter.jsx";
+import { Context } from "../store/appContext.js"
+
 
 export const Home = () => {
 
-	const [ characters, setCharacters] = useState([])
-
-	const loadCharacters = async () => {
-		const resp = await fetch("https://dragonball-api.com/api/characters")
-		const data = await resp.json()
-		setCharacters(data.items);
-	}
-
-	useEffect(()=>{
-		loadCharacters();
-	}, [])
+	const { store , actions } = useContext(Context);
 
 	return <div className="text-center mt-5">
 		<h1>DragonBall API</h1>
@@ -26,8 +18,8 @@ export const Home = () => {
 
 		<div className="d-flex flex-wrap">
 			{
-				characters && 
-				characters.map( personaje => <CardCharacter key={personaje.id} character={personaje} />)
+				store.characters && 
+				store.characters.map( personaje => <CardCharacter key={personaje.id} character={personaje} />)
 			}
 		</div>
 
